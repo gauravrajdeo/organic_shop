@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -52,7 +53,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
       { path: 'admin/orders', component: AdminOrdersComponent },
     ]),
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
