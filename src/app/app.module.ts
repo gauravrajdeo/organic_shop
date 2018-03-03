@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserModule } from '@angular/platform-browser';
@@ -45,15 +46,17 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'check-out', component: CheckOutComponent },
-      { path: 'my/orders', component: MyOrdersComponent },
-      { path: 'order-success', component: OrderSuccessComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'admin/products', component: AdminProductsComponent },
-      { path: 'admin/orders', component: AdminOrdersComponent },
+      
+      { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
+      { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+      { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] },
+      
+      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard] },
+      { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard] },
     ]),
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
