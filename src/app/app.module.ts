@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -56,7 +57,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
       { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard] },
     ]),
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
